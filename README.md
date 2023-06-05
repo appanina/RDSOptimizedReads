@@ -18,6 +18,22 @@ aws rds create-db-instance --db-instance-identifier saz-local --backup-retention
 aws rds create-db-instance --db-instance-identifier saz-ebs --backup-retention-period 0 --db-instance-class db.m5.4xlarge --no-deletion-protection --db-subnet-group-name myrds-subnetgroup1 --vpc-security-group-ids sg-xxxxxxxxxxxxxxxxxxxx --engine postgres --engine-version 14.7 --master-username postgres --master-user-password MySuperXXXXXX --allocated-storage 2048 --iops 5000 --port 5444 --region us-west-2 --monitoring-interval 1 --monitoring-role-arn arn:aws:iam::AWS_ACCOUNT_NUMBER:role/rds-monitoring-role --enable-performance-insights --output table
 ```
 
+#### Modify environment variables in scripts
+Once instances are ready, modify follow environment variables in scripts as per your configuration.
+
+```export PGHOSTS="saz-ebs.xxxxxxxxxxx.us-west-2.rds.amazonaws.com saz-local.xxxxxxxxxxx.us-west-2.rds.amazonaws.com"``` (***Replace with fully qualified RDS end-points***)
+
+```export PGPORT=5444``` (***Port of your RDS instance***)
+
+```export PGDATABASE=postgres``` (***Default database to connect, not the database where test data is loaded***)
+
+```export PGUSER=postgres``` (***Administration or RDS superuser account of your RDS instance***)
+
+```export PGPASSWORD=MyPassword123``` (***Password of Administration or RDS superuser account of your RDS instance***)
+
+Check [Connecting to a DB instance running the PostgreSQL database engine](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ConnectToPostgreSQLInstance.html) for more information.
+
+
 ### Loading test data
 Run the following script to load the data, <number_of_records> defines volume of data to be loaded abd into sbtest database and <number_of_tables> defines number of tables.
 ```
