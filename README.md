@@ -50,11 +50,11 @@ Run the following script to do the testing.
 nohup ./main.sh sbtest &
 ```
 
-All performance test scripts run in a loop and run sessions simlteneously based on the concurrency level. Concurrency defines number of sessions running in parallel wherein each session runs same statement on a separate table.
+All performance test scripts run in a loop and run sessions simlteneously based on the concurrency level. Concurrency defines number of sessions running in parallel wherein each session runs same statement.
 ```
 {1 2 4 8 12 16}
 ```
-For example, a concurrency of two for queries executes the same query on seperate tables, sbtest1 and sbtest2, simlteneously in two separate sessions. 
+For example, a concurrency of two for queries executes the same query, simlteneously in two separate sessions. For indexes and temporary tables, concurrency of two creates indexes/temporary tables on separate tables simlteneously in two separate sessions, sbtest1 and sbtest2.
 
 #### If you want to test for a sepcific scenario separately, you can do the following:
 
