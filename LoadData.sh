@@ -11,9 +11,8 @@ export BMDB=$3
 export BM_DATA_VOL=$2
 export NUM_CONCURRENT_SESSIONS=$1
 exec >$LOG/$NUM_CONCURRENT_SESSIONS-$BM_DATA_VOL-$BMDB-EBSvsLocal-LoadData-"$(date +"%d-%m-%Y-%H%M%S")".log 2>&1
-# RESET pg_stat_statements and pg_stat_* data
 echo "Running test with volume of $BM_DATA_VOL records with concurrency of $NUM_CONCURRENT_SESSIONS on RDS instances: $PGHOSTS"
-# Checking if loading is needed
+# Checking if loading is needed and RESET pg_stat_statements and pg_stat_* data
 echo "Checking if loading is needed"
 for PGHOST in $PGHOSTS; do
 	echo "Checking for $PGHOST"
