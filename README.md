@@ -20,6 +20,7 @@ aws rds create-db-instance --db-instance-identifier saz-ebs --backup-retention-p
 
 #### Modify environment variables in scripts
 Once instances are ready, modify follow environment variables in scripts as per your configuration.
+```export LD_LIBRARY_PATH = <Set it to the lib directory of your PostgreSQL install location>
 
 ```export PGHOSTS="saz-ebs.xxxxxxxxxxx.us-west-2.rds.amazonaws.com saz-local.xxxxxxxxxxx.us-west-2.rds.amazonaws.com"``` (***Replace with fully qualified RDS end-points***)
 
